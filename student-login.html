@@ -73,27 +73,25 @@
     </div>
 
     <script>
-         const myform = document.getElementById('myForm');
+      const myForm = document.getElementById("myForm");
+      myForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-         myForm.addEventListener('submit', fuction (e)) {
-           e.preventDefault();
+        const formData = new FormData(myForm);
 
-           const formData = new FormData(this);
-
-           fetch('https://example.com/profile/avatar', {
-        method: 'PUT',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Success:', result);
-      })
-      .catch(error => {
-        console.error('Error:', error);
+        fetch("https://epislon-hacks.herokuapp.com/api/student/login", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("Success:", result);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
       });
-         }
     </script>
-
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
